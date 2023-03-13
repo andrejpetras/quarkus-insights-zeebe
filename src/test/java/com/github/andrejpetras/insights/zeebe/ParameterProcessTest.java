@@ -48,8 +48,7 @@ public class ParameterProcessTest {
         await().atMost(7, SECONDS).untilAsserted(a::isCompleted);
         a.hasVariableWithValue("name", inputName);
         a.hasVariableWithValue("value", inputValue);
-
-//        a.hasVariableWithValue("description", inputName + "/" + inputValue);
+        a.hasVariableWithValue("description", inputName + "/" + inputValue);
     }
 
 

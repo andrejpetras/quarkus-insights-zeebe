@@ -43,9 +43,21 @@ public class ParameterMetadataProcessTest {
     private final static String BPM_PROCESS_ID = "parameter-process";
 
     @Test
-    @DisplayName("Description test")
+    @DisplayName("Metadata test")
     public void parameterProcessDescriptionTest() {
+        Map<String, Object> data = new HashMap<>(Map.of(
+                "key-A", "value-A",
+                "key-B", 1));
 
+        mockServerClient.when(request().withPath("/metadata").withMethod("GET")
+                        , Times.unlimited()
+                        , TimeToLive.unlimited()
+                        , 100)
+                .respond(
+                        httpRequest -> response().withStatusCode(200)
+                                .withHeader("Content-Type", "application/json")
+                                .withBody(JsonBody.json(data))
+                );
         String inputName = "testName";
         String inputValue = "testValue";
 
@@ -63,10 +75,6 @@ public class ParameterMetadataProcessTest {
         a.hasVariableWithValue("name", inputName);
         a.hasVariableWithValue("value", inputValue);
 
-        a.hasVariableWithValue("metadata", Map.of(
-                "key", "key",
-                "path", "/variables/key",
-                "data", "data"
-        ));
+        a.hasVariableWithValue("metadata", data);
     }
 }

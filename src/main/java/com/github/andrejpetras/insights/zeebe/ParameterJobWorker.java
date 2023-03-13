@@ -5,8 +5,6 @@ import io.quarkiverse.zeebe.Variable;
 import io.quarkiverse.zeebe.VariablesAsType;
 import io.quarkus.logging.Log;
 
-import javax.enterprise.context.ApplicationScoped;
-
 public class ParameterJobWorker {
 
     @JobWorker(type = "create-parameter")

@@ -1,11 +1,13 @@
-## TODO:
+
+[Quarkus Insights #121 - Quarkus Zeebe](https://www.youtube.com/watch?v=LA50HS3jNoE&list=PLsM3ZE5tGAVatO65JIxgskQh-OKoqM4F2)
 
 ## Start process instances
- 
+
+Open `zeebe-dev-monitor` and create new process instance
+
+```shell
 {"inputName":"name1","inputValue":"value1"}
-{"inputName":"name2","inputValue":"value2"}
-{"inputName":"name3","inputValue":"value3"}
-{"inputName":"name4","inputValue":"value4"}
+``` 
 
 ## Start process from console
 

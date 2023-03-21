@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Quarkus Insights</title>
+
+		<meta name="description" content="Quarkus liquibase, hibernate-type, mockserver, unleash, zeebe">
+		<meta name="author" content="Andrej Petras">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/timeline.css">
+		<link rel="stylesheet" href="dist/theme/white.css" id="theme">
+		<link rel="stylesheet" href="dist/intellij-light.min.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<img src="assets/quarkus2.svg" alt="Quarkus logo" style="height: 180px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+					<img src="assets/zeebe.svg" alt="Zeebe logo" style="height: 180px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+					<h3>Quarkus zeebe and more ...</h3>
+					<p>
+						<small>Created by <a href="https://github.com/andrejpetras">Andrej Petras</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h5>Contribution</h5>
+					<div class="timeline">
+						<div class="container left">
+							<div class="content">
+							  <b>2019</b> first pull request in Quarkus
+							</div>
+						</div>						
+						<div class="container right">
+						  <div class="content">
+							<b>Liquibase</b> extension for Quarkus 1
+						  </div>
+						</div>
+						<div class="container left">
+							<div class="content">
+							  <b>Hibernate types <small>[Vlad Mihalcea]</small></b> extension,
+							  taken over by <a>Werner Glanzer</a></small>
+							</div>
+						</div>						
+					  	<div class="container right">
+							<div class="content">
+							  Client extension for <b>Unleash</b> Feature Flag Management Server
+							</div>
+					  	</div>
+						<div class="container left">
+							<div class="content">
+							  <b>Mockserver</b> extension for local development and test
+							</div>
+						</div>
+						<div class="container right">
+							<div class="content">
+							  <b>Zeebe (Camunda Platform 8)</b> client extension
+							</div>
+					  	</div>													
+					</div>		  				
+				</section>
+
+				<section>
+					<h2>Zeebe</h2>
+					<p>cloud native workflow engine, <a href="https://camunda.com/">Camunda Platform 8</a>
+									<img src="assets/camunda_platform_arch2.png"  />
+					</p>
+				</section>
+				
+				<section>
+					<h2>Zeebe java client</h2>
+					<p>
+					<img src="assets/java-client.png"  />
+					</p>
+					<small>Bernd Rücker: <a href="https://blog.bernd-ruecker.com/writing-good-workers-for-camunda-cloud-61d322cad862">Writing Good Workers For Camunda Cloud</a></small>
+				</section>
+
+
+				<section>
+					<pre data-id="code-animation">
+						<code class="hljs java" data-trim data-line-numbers>
+						public class MyJobWorker {
+
+							@JobWorker(type = "my-job")
+							public Parameter myJob(
+									@Variable("name") String tmp, 
+									@Variable String value,
+									@VariablesAsType Parameter parameter) {
+								
+								// ...
+								return parameter;
+							}
+						}
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<pre data-id="code-animation">
+						<code class="hljs java" data-trim data-line-numbers>
+							public class MyJobWorker {
+								
+								public Parameter myJob() { ... }
+								
+								public Inputstream myJob() { ... }
+								
+								public Map&lt;String,Object> myJob() { ... }
+
+								public Uni&lt;?> myJob() { ... }
+
+								public CompletionStage&lt;?> myJob() { ... }
+							}
+						</code>		
+					</pre>
+					
+				</section>
+
+				<section>
+					<h5>Metrics</h5>
+					<small>Micrometer / Smallrye Metrics</small>
+					<h5>Tracing</h5>
+					<small>Opentelemetry / Opentracing</small>
+					<p>
+					<img src="assets/opentelemetry_small.png" style=" margin: 0 auto 4rem auto; background: transparent;" />
+					</p>
+				</section>
+				<section>
+					<h2>DEMO</h2>
+					<small>Loading...</small>				
+				</section>
+
+				<section>
+					<p>
+						twitter github linkedin						 
+					</p>
+					<a>@andrejpetras</a>
+				</section>				
+			</div>
+
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<!-- <script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/search/search.js"></script>
+		<script src="plugin/markdown/markdown.js"></script> -->
+		<script src="dist/highlight.js"></script>
+		<script>
+
+			// Also available as an ES module, see:
+			// https://revealjs.com/initialization/
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				// plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+				plugins: [   RevealHighlight ]
+			});
+
+		</script>
+
+	</body>
+</html>
